@@ -18,10 +18,7 @@ module RBotKit
 		def update_state_for(chat_id, state)
 			
 		end
-
-		def update_last_processed_request(chat_id, req_id)
-			
-		end
+ 
 
 	end
 

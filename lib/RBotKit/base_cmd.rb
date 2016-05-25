@@ -3,12 +3,15 @@ module RBotKit
 	class BaseCmd
 		class << self; attr_accessor :request end
 		class << self; attr_accessor :responces end
+		class << self; attr_accessor :state_provider end
 
  		 @request = nil  
+ 		 @state_provider = nil  
  		 @responces = nil 
 
  		 attr_accessor :request
  		 attr_accessor :responces
+ 		 attr_accessor :state_provider
 
  		 def before_init
  		 	
@@ -19,16 +22,20 @@ module RBotKit
 
  		 def handle  
  		 end
-
-
- 		 def resp_return_msg txt
- 		 	@responces = [] if @responces == nil 
- 		 	@responces << ResponceBuilder.tel_text_resp(@request.chat_id, txt)
+ 
+ 		 def new_ret_resp(kb_builder = nil)
+ 		 		new_resp(@request.chat_id, kb_builder)
  		 end
 
- 	   def resp_return_photofile(filepath, caption)
+ 		 def new_resp(chat_id, kb_builder = nil)
+ 		 		resp = TRep.new(chat_id, kb_builder)
+ 		 		add_resp resp 
+ 		 		resp
+ 		 end
+
+ 		 def add_resp(resp)
  		 	@responces = [] if @responces == nil 
- 		 	@responces << ResponceBuilder.tel_filephoto_resp(@request.chat_id, caption, File.new(filepath, 'rb'))
+ 		 	@responces << resp
  		 end
 
  		 def err_if_true(bv, msg)
