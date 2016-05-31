@@ -1,6 +1,6 @@
 require "RBotKit/version"
-require "RBotKit/t_responce" 
 require "RBotKit/base_cmd"
+require "RBotKit/t_responce" 
 require "RBotKit/state_provider"
 require "RBotKit/locale_provider"
 
@@ -79,8 +79,7 @@ module RBotKit
 
       @state_provider.update_last_processed_req_id(req.chat_id, req.id)
 
-      state = @state_provider.get_current_state(req.chat_id)
-      p "STATE = #{state}"
+      state = @state_provider.get_current_state(req.chat_id) 
       cmdCase = nil  
 
       arrs = req.class == RequestCallback ? @inlinecases : @caces 
@@ -101,8 +100,7 @@ module RBotKit
         break if cmdCase != nil
       end 
 
-      return if cmdCase == nil 
-      p "CMD = #{cmdCase} #{@@cmd_classprefix}#{cmdCase.cmdclass}"
+      return if cmdCase == nil  
       begin
 
         cmdHandel = Object::const_get("#{@@cmd_classprefix}#{cmdCase.cmdclass}").new

@@ -1,5 +1,6 @@
 require 'spec_helper' 
-
+require 'i18n'
+ 
 describe RBotKit do
 	#$cli = Mongo::Client.new([ '127.0.0.1:27017' ])
 	 RBotKit.set_bot_key "none"

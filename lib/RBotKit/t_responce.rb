@@ -1,9 +1,9 @@
 module RBotKit 
-    require "rest-client"
-    require 'json'
-    require 'i18n'
  
   class TRep
+    require "rest-client"
+    require 'json' 
+    require 'i18n' 
     class << self; attr_accessor :chat_id end 
     attr_accessor :chat_id
 
