@@ -1,9 +1,9 @@
 module RBotKit 
- 
-  class TRep
     require "rest-client"
     require 'json'
     require 'i18n'
+ 
+  class TRep
     class << self; attr_accessor :chat_id end 
     attr_accessor :chat_id
 
@@ -89,7 +89,7 @@ module RBotKit
     end
 
     def set_payload_keyboard
-      @payload[:reply_markup] = @kb_builder.call() if @kb_builder != nil  
+      @payload[:reply_markup] = @kb_builder.call().to_json if @kb_builder != nil  
     end
 
     def tel_send_message 
